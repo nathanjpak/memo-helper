@@ -24,7 +24,7 @@ const chooseActivity = (
   difficulty: TActivityDifficulty,
   isAssessment: boolean,
   prevActivity?: TPassiveActivity | TActiveActivity
-): IListedActivity | null => {
+): IListedActivity => {
   const validActivities = activitiesList.filter((activity) => {
     const checkAssessment = isAssessment
       ? activity.isAssessment === isAssessment
@@ -37,9 +37,7 @@ const chooseActivity = (
     );
   });
 
-  return (
-    validActivities[Math.floor(Math.random() * validActivities.length)] || null
-  );
+  return validActivities[Math.floor(Math.random() * validActivities.length)];
 };
 
 export default chooseActivity;
