@@ -1,5 +1,6 @@
 import { IListedActivity } from "../../assets/activities";
 import chooseActivity from "./chooseActivity";
+import genFillingInBlankActivity from "./genFillingInBlankActivity";
 import genReadingActivity from "./genReadingActivity";
 
 export type TActivityDifficulty = "Beginner" | "Intermediate" | "Advanced";
@@ -26,12 +27,24 @@ const genLesson = (verseText: string, difficulty: TActivityDifficulty) => {
 
   // call function that corresponds to activity
 
-  for (const activity of activities) {
+  for (const [index, activity] of activities.entries()) {
+    const isAssessment = index === activities.length - 1;
     switch (activity.name) {
+      case "FillingInBlank":
+        const isActive =
+          isAssessment || [true, false][Math.round(Math.random())];
+        const {} = genFillingInBlankActivity(
+          verseText,
+          difficulty,
+          isActive,
+          isAssessment
+        );
+        break;
       default: // "Reading"
         const { instructions, displayedText } = genReadingActivity(verseText);
         activity.instructions = instructions;
         activity.displayedText = displayedText;
+        break;
     }
   }
 };

@@ -1,4 +1,5 @@
 import selectBlanks, { ISelectBlanksOptions } from "../util/selectBlanks";
+import { TActivityDifficulty } from "./genLesson";
 
 // Cases for blanks:
 // Every other word, with first letter given (Beginner Passive);
@@ -7,7 +8,7 @@ import selectBlanks, { ISelectBlanksOptions } from "../util/selectBlanks";
 
 const genFillingInBlankActivity = (
   verseText: string,
-  difficulty: "Beginner" | "Intermediate",
+  difficulty: TActivityDifficulty,
   isActive = true,
   isAssessment = false
 ): {
