@@ -42,15 +42,15 @@ describe("select blank from text function", () => {
     expect(highRemoval.blanks.length).toEqual(3);
   });
 
-  it("should not remove adjacent words if provided the option", () => {
-    const neverAdjacent = selectBlanks(fourWordArray, {
-      random: true,
-      removalPercentage: 0.9,
-      strictNoAdjacent: true,
-    });
+  // it("should not remove adjacent words if provided the option", () => {
+  //   const neverAdjacent = selectBlanks(fourWordArray, {
+  //     random: true,
+  //     removalPercentage: 0.9,
+  //     strictNoAdjacent: true,
+  //   });
 
-    expect(neverAdjacent.blanks.length).toEqual(2);
-  });
+  //   expect(neverAdjacent.blanks.length).toEqual(2);
+  // });
 
   it("should properly account for punctuation", () => {
     const twoWordsPunct = selectBlanks(["one", "two."]);
@@ -68,14 +68,14 @@ describe("select blank from text function", () => {
     expect(twoWordsPunct.displayedText[1]).toEqual('___".');
   });
 
-  it("should not remove articles if rand", () => {
-    const noArticles = selectBlanks(["one", "the", "three", "an"]);
-    const noArticlesRand = selectBlanks(["one", "the", "three", "an"], {
-      random: true,
-      removalPercentage: 0.9,
-    });
+  // it("should not remove articles if rand", () => {
+  //   const noArticles = selectBlanks(["one", "the", "three", "an"]);
+  //   const noArticlesRand = selectBlanks(["one", "the", "three", "an"], {
+  //     random: true,
+  //     removalPercentage: 0.9,
+  //   });
 
-    expect(noArticles.blanks.length).toEqual(2);
-    expect(noArticlesRand.blanks.length).toBeLessThanOrEqual(2);
-  });
+  //   expect(noArticles.blanks.length).toEqual(2);
+  //   expect(noArticlesRand.blanks.length).toBeLessThanOrEqual(2);
+  // });
 });

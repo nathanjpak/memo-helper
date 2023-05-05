@@ -1,6 +1,9 @@
 import { punctuation } from "../../assets/whiteLists";
 
-const convertWordToBlank = (word: string, keepFirst = false): string => {
+const convertWordToBlank = (
+  word: string,
+  keepFirst = false
+): { blankedOut: string; raw: string } => {
   // check for punctuation
   let beginningString = "";
   let endingString = "";
@@ -39,7 +42,15 @@ const convertWordToBlank = (word: string, keepFirst = false): string => {
   );
   if (keepFirst) mid = word[beginningString.length] + mid;
 
-  return beginningString + mid + endingString;
+  const raw = word.substring(
+    beginningString.length,
+    word.length - endingString.length
+  );
+
+  return {
+    blankedOut: beginningString + mid + endingString,
+    raw: raw,
+  };
 };
 
 export default convertWordToBlank;

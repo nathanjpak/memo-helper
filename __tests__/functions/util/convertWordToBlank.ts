@@ -5,8 +5,9 @@ describe("convert word to blank function", () => {
     const str = "an(notreally)arbitrarilylongstring";
     const fullBlank = convertWordToBlank(str);
 
-    expect(fullBlank.length).toBe(str.length);
-    expect(fullBlank).toEqual("_".repeat(str.length));
+    expect(fullBlank.blankedOut.length).toBe(str.length);
+    expect(fullBlank.blankedOut).toEqual("_".repeat(str.length));
+    expect(fullBlank.raw).toEqual(str);
   });
 
   it("should return a blank with a punctuation or two", () => {
@@ -14,9 +15,12 @@ describe("convert word to blank function", () => {
     const twoPunct = convertWordToBlank("two?'");
     const beginningPunct = convertWordToBlank('"quote!');
 
-    expect(onePunct).toEqual("___.");
-    expect(twoPunct).toEqual("___?'");
-    expect(beginningPunct).toEqual('"_____!');
+    expect(onePunct.blankedOut).toEqual("___.");
+    expect(onePunct.raw).toEqual("one");
+    expect(twoPunct.blankedOut).toEqual("___?'");
+    expect(twoPunct.raw).toEqual("two");
+    expect(beginningPunct.blankedOut).toEqual('"_____!');
+    expect(beginningPunct.raw).toEqual("quote");
   });
 
   it("should not count punctuation in the middle of a word", () => {
@@ -24,8 +28,10 @@ describe("convert word to blank function", () => {
     const hyphen = convertWordToBlank("Abed-Nego");
     // const theOneException = convertWordToBlank("Jesus'");
 
-    expect(apostrophe).toEqual("_".repeat(7));
-    expect(hyphen).toEqual("_".repeat(9));
+    expect(apostrophe.blankedOut).toEqual("_".repeat(7));
+    expect(apostrophe.raw).toEqual("Peter's");
+    expect(hyphen.blankedOut).toEqual("_".repeat(9));
+    expect(hyphen.raw).toEqual("Abed-Nego");
     // expect(theOneException).toEqual("_".repeat(6));
   });
 
@@ -34,8 +40,11 @@ describe("convert word to blank function", () => {
     const secondLetter = convertWordToBlank('"Let', true);
     const thirdLetter = convertWordToBlank("\"'And", true);
 
-    expect(firstLetter).toEqual("J____");
-    expect(secondLetter).toEqual('"L__');
-    expect(thirdLetter).toEqual("\"'A__");
+    expect(firstLetter.blankedOut).toEqual("J____");
+    expect(firstLetter.raw).toEqual("Jesus");
+    expect(secondLetter.blankedOut).toEqual('"L__');
+    expect(secondLetter.raw).toEqual("Let");
+    expect(thirdLetter.blankedOut).toEqual("\"'A__");
+    expect(thirdLetter.raw).toEqual("And");
   });
 });
