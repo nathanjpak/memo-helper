@@ -1,10 +1,11 @@
 // import { articles } from "../../assets/whiteLists";
 import convertWordToBlank from "./convertWordToBlank";
 
-interface ISelectBlanksOptions {
+export interface ISelectBlanksOptions {
   removalPercentage: 0.1 | 0.2 | 0.3 | 0.4 | 0.5 | 0.6 | 0.7 | 0.8 | 0.9;
   random: boolean;
   strictNoAdjacent?: boolean;
+  keepFirstLetter?: boolean;
 }
 
 // What to do with articles? Pronouns?
@@ -56,7 +57,10 @@ const selectBlanks = (
         displayedText.push(splitText[index]);
         continue;
       }
-      const { blankedOut, raw } = convertWordToBlank(splitText[index]);
+      const { blankedOut, raw } = convertWordToBlank(
+        splitText[index],
+        options.keepFirstLetter
+      );
 
       blanks.push(raw);
       displayedText.push(blankedOut);

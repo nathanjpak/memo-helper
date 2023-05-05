@@ -55,7 +55,7 @@ describe("select blank from text function", () => {
   it("should properly account for punctuation", () => {
     const twoWordsPunct = selectBlanks(["one", "two."]);
 
-    expect(twoWordsPunct.blanks).toEqual(["two"]);
+    expect(twoWordsPunct.blanks).toStrictEqual(["two"]);
     expect(twoWordsPunct.displayedText.length).toBe(2);
     expect(twoWordsPunct.displayedText[1]).toEqual("___.");
   });
@@ -63,9 +63,25 @@ describe("select blank from text function", () => {
   it("should properly account for consecutive punctuation", () => {
     const twoWordsPunct = selectBlanks(["one", 'two".']);
 
-    expect(twoWordsPunct.blanks).toEqual(["two"]);
+    expect(twoWordsPunct.blanks).toStrictEqual(["two"]);
     expect(twoWordsPunct.displayedText.length).toBe(2);
     expect(twoWordsPunct.displayedText[1]).toEqual('___".');
+  });
+
+  it("should return blanks with first letter if prompted", () => {
+    const firstLetter = selectBlanks(fourWordArray, {
+      random: false,
+      removalPercentage: 0.5,
+      keepFirstLetter: true,
+    });
+
+    expect(firstLetter.blanks.length).toEqual(2);
+    expect(firstLetter.displayedText).toStrictEqual([
+      "one",
+      "t__",
+      "three",
+      "f___",
+    ]);
   });
 
   // it("should not remove articles if rand", () => {
