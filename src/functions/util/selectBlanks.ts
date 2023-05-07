@@ -53,7 +53,7 @@ const selectBlanks = (
     removalPercentage and strictNoAdjacent would be irrelevant*/
 
     for (let index = 0; index < splitText.length; index++) {
-      if (!(index % 2)) {
+      if (options.removalPercentage !== 1 && !(index % 2)) {
         displayedText.push(splitText[index]);
         continue;
       }

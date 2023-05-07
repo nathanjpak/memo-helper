@@ -47,8 +47,20 @@ describe("select blank from text function", () => {
       random: true,
       removalPercentage: 1,
     });
+    const everyWordNonRand = selectBlanks(fourWordArray, {
+      random: false,
+      removalPercentage: 1,
+      keepFirstLetter: true,
+    });
 
     expect(everyWord.blanks.length).toEqual(4);
+    expect(everyWordNonRand.blanks.length).toEqual(4);
+    expect(everyWordNonRand.displayedText).toEqual([
+      "o__",
+      "t__",
+      "t____",
+      "f___",
+    ]);
   });
 
   // it("should not remove adjacent words if provided the option", () => {
