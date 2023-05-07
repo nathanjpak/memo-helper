@@ -42,6 +42,15 @@ describe("select blank from text function", () => {
     expect(highRemoval.blanks.length).toEqual(3);
   });
 
+  it("should remove every word if prompted", () => {
+    const everyWord = selectBlanks(fourWordArray, {
+      random: true,
+      removalPercentage: 1,
+    });
+
+    expect(everyWord.blanks.length).toEqual(4);
+  });
+
   // it("should not remove adjacent words if provided the option", () => {
   //   const neverAdjacent = selectBlanks(fourWordArray, {
   //     random: true,
