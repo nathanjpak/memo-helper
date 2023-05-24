@@ -1,15 +1,26 @@
+import Link from "next/link";
+
 const LessonButtons = () => {
   return (
     <>
-      <button className="w-full sm:w-4/5 p-4 text-2xl hover:text-slate-200">
+      <Link
+        href="/Lesson"
+        className="w-full sm:w-4/5 p-4 text-2xl text-center hover:text-slate-200"
+      >
         Lesson 1
-      </button>
-      <button className="w-full sm:w-4/5 p-4 text-2xl hover:text-slate-200">
+      </Link>
+      <Link
+        href="/Lesson"
+        className="w-full sm:w-4/5 p-4 text-2xl text-center hover:text-slate-200"
+      >
         Lesson 2
-      </button>
-      <button className="w-full sm:w-4/5 p-4 text-2xl hover:text-slate-200">
+      </Link>
+      <Link
+        href="/Lesson"
+        className="w-full sm:w-4/5 p-4 text-2xl text-center hover:text-slate-200"
+      >
         Lesson 3
-      </button>
+      </Link>
     </>
   );
 };
